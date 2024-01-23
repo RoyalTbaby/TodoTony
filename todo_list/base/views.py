@@ -1,21 +1,19 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
+import logging
+
+from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.list import ListView
 
 from .Forms import EmailCreationForm
 from .models import Task
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-import logging
-
-
 
 
 class CustomLoginView(LoginView):

@@ -1,8 +1,9 @@
 import json
-import requests
-from django.db import models
-from django.contrib.auth.models import User
 import logging
+
+import requests
+from django.contrib.auth.models import User
+from django.db import models
 
 
 class Task(models.Model):
@@ -25,7 +26,6 @@ class Task(models.Model):
 
         if self.pk is None:
             super(Task, self).save(*args, **kwargs)
-
 
             url = "https://api.pandadoc.com/public/v1/documents"
 
@@ -65,8 +65,6 @@ class Task(models.Model):
             self.uuid_document = result['uuid']
             super(Task, self).save(*args, **kwargs)
 
-
-
             url = f"https://api.pandadoc.com/public/v1/documents/[{result['uuid']}/send"
 
             payload = json.dumps({
@@ -83,7 +81,3 @@ class Task(models.Model):
 
         else:
             super(Task, self).save(*args, **kwargs)
-
-
-
-
